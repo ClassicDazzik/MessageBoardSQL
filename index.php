@@ -20,13 +20,17 @@ session_start();
         <div class="message"></div>
     </div-->
     <script>
+
+        let data = null
+
         function getMessages(){
             const ajax = new XMLHttpRequest()
             ajax.onload = function(){
-                const data = JSON.parse(this.responseText)
+                data = JSON.parse(this.responseText)
                 console.log(data)
                 const msgDiv = document.getElementById("messageDiv")
                 data.forEach(message => {
+                    
                     const newMessage = document.createElement("p")
                     const messageText = document.createTextNode(message.messag)
                     newMessage.appendChild(messageText)
@@ -35,6 +39,19 @@ session_start();
             }
             ajax.open("GET","getAllMessages.php")
             ajax.send()
+        }
+
+        function printNames(jsonData){
+            
+            const msgDiv = document.getElementById("messageDiv")
+            msgDiv.innerHTML  = ""
+            jsonData.forEach(message => {
+                    
+                    const newMessage = document.createElement("p")
+                    const messageText = document.createTextNode(message.sender)
+                    newMessage.appendChild(messageText)
+                    msgDiv.appendChild(newMessage)
+                })
         }
 
     </script>
