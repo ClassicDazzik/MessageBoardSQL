@@ -1,6 +1,5 @@
 <?php
 session_start();
-include "getAllMessages.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,9 +7,14 @@ include "getAllMessages.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Messages</title>
 </head>
 <body>
+    <h1>MessageBoard</h1>
+    <button id="namesBtn">Show Names</button>
+    <button id="messagesBtn">Show Messages</button>
+
     <div id="messageDiv"></div>
     <!--div class="sender">
         <p>Sent by <b>Masa</b> at <b>2022-5-4</b></p>
@@ -20,41 +24,6 @@ include "getAllMessages.php";
         <p></p>
         <div class="message"></div-->
     </div>
-    <script>
-
-        let data = null
-
-        function getMessages(){
-            const ajax = new XMLHttpRequest()
-            ajax.onload = function(){
-                data = JSON.parse(this.responseText)
-                console.log(data)
-                const msgDiv = document.getElementById("messageDiv")
-                data.forEach(message => {
-                    
-                    const newMessage = document.createElement("p")
-                    const messageText = document.createTextNode(message.messag)
-                    newMessage.appendChild(messageText)
-                    msgDiv.appendChild(newMessage)
-                })
-            }
-            ajax.open("GET","getAllMessages.php")
-            ajax.send()
-        }
-
-        function printNames(jsonData){
-            
-            const msgDiv = document.getElementById("messageDiv")
-            msgDiv.innerHTML  = ""
-            jsonData.forEach(message => {
-                    
-                    const newMessage = document.createElement("p")
-                    const messageText = document.createTextNode(message.sender)
-                    newMessage.appendChild(messageText)
-                    msgDiv.appendChild(newMessage)
-                })
-        }
-
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>
