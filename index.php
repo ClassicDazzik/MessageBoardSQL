@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "getAllMessages.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,8 +18,8 @@ session_start();
     </div>
     <div class="sender">
         <p></p>
-        <div class="message"></div>
-    </div-->
+        <div class="message"></div-->
+    </div>
     <script>
 
         let data = null
