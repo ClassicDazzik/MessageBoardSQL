@@ -1,6 +1,5 @@
 <?php
 session_start();
-include "getAllMessages.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
