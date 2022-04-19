@@ -9,6 +9,8 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Messages</title>
+    <a href="login.php" <?php echo ($_SESSION['login'] = 0) ? 'style="display:none;"' : '' ?> >Login</a>
+    <a href="logout.php" <?php echo ($_SESSION['login'] = 1) ? 'style="display:none;"' : '' ?> >Logout</a>
 </head>
 <body>
     <h1>MessageBoard</h1>

@@ -22,12 +22,12 @@ if(empty($errors)){
     }
 // Verify the password
     if($count == 1){
-        if(password_verify($_POST['passwd'], $res['password'])){
+        if(password_verify($_POST['passwd'], $res['pwd'])){
         }else{
             $errors[] = "Username and Password don't match";
         }
     }
-    if(password_verify($_POST['passwd'], $res['password'])){
+    if(password_verify($_POST['passwd'], $res['pwd'])){
         session_regenerate_id();
         $_SESSION['login'] = true;
         $_SESSION['id'] = $res['id'];
