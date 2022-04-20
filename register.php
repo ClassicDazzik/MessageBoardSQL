@@ -1,11 +1,11 @@
 <?php
 session_start();
 include 'connect.php';
-include 'sessions.php';
+// include 'sessions.php';
 
-if(isset($_POST['Register'])) {
-    $usernm = $_POST("usernam");
-    $pass = $_POST("pwd2");
+if( isset($_POST['registerBtn']) ) {
+    $usernm = $_POST["usernam"];
+    $pass = $_POST["pwd2"];
     $passwordHash = password_hash($pass, PASSWORD_BCRYPT);
 
     $stmt = $conn->prepare("INSERT INTO accounts (accname, pwd)
@@ -13,6 +13,10 @@ if(isset($_POST['Register'])) {
         $stmt->bindParam(':accname', $usernm);
         $stmt->bindParam(':pwd', $passwordHash);
     $stmt->execute();
+} else {
+    ?>
+    <script>alert('ei onnistunut')</script>
+    <?php
 }
 // if(isset($_POST['Register'])){
 //     $usernam = !empty($_POST['usernam']) ? trim($_POST['usernam']) : null;
@@ -58,7 +62,7 @@ if(isset($_POST['Register'])) {
         <input type="password" name="pwd" id="pwd">
         <label for="pwd2">Repeat Password</label>
         <input type="password" name="pwd2" id="pwd2">
-        <input type="submit" value="Register" name="submit">
+        <input type="submit" value="Register" name="registerBtn">
     </form>
 </body>
 <!-- script language="javascript" type="text/javascript">
