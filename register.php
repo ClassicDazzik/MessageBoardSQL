@@ -2,32 +2,31 @@
 session_start();
 include 'connect.php';
 if(isset($_POST['Register'])){
-$usernam = !empty($_POST['usernam']) ? trim($_POST['usernam']) : null;
-$pass = !empty($_POST['pwd2']) ? trim($_POST['pwd2']) : null;
+    $usernam = !empty($_POST['usernam']) ? trim($_POST['usernam']) : null;
+    $pass = !empty($_POST['pwd2']) ? trim($_POST['pwd2']) : null;
 
-$sql = "SELECT COUNT(accname) AS num FROM messageboard WHERE accname = :accname";
-$stmt = $pdo->prepare($sql);
+    $sql = "SELECT COUNT(accname) AS num FROM messageboard WHERE accname = :accname";
+    $stmt = $pdo->prepare($sql);
 
-$stmt->bindValue(':accname, $usernam');
-$stmt->execute();
+    $stmt->bindValue(':accname, $usernam');
+    $stmt->execute();
 
-$row = $stmt->fetch(PDO::FETCH_ASSOC);
-if($row['num'] > 0){
-    die('Username already exists.');
-}
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($row['num'] > 0){
+            die('Username already exists.');
+        }
 
-$passwordHash = password_hash($pass, PASSWORD_BCRYPT);
+    $passwordHash = password_hash($pass, PASSWORD_BCRYPT);
 
-$sql = "INSERT INTO messageboard (accname, pwd) VALUES (:accname, :pwd)";
-$stmt = $pdo->prepare($sql);
+    $sql = "INSERT INTO messageboard (accname, pwd) VALUES (:accname, :pwd)";
+    $stmt = $pdo->prepare($sql);
 
-$stmt->bindValue(':accname', $usernam);
-$stmt->bindValue(':pwd', $passwordHash);
+    $stmt->bindValue(':accname', $usernam);
+    $stmt->bindValue(':pwd', $passwordHash);
 
-$result = $stmt->execute();
+    $stmt->execute();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +36,7 @@ $result = $stmt->execute();
     <title>Register</title>
 </head>
 <body>
-    <form>
+    <form action="register.php" method="post">
         <label for="usernam">Username</label>
         <input type="text" name="usernam" id="usernam" required>
         <label for="pwd">Password</label>
