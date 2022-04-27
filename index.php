@@ -9,8 +9,13 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Messages</title>
-    <a href="login.php" <?php echo ($_SESSION['login'] = 0)?> >Login</a>
-    <a href="logout.php" <?php echo ($_SESSION['login'] = 1)?> >Logout</a>
+    <?php
+    if (!isset($_SESSION['login'])) {
+        echo "<a role=button href='login.php'>Login</a>";
+    } else {
+        echo "<a role=button href='logout.php'>Logout</a>";
+    }
+    ?>
 </head>
 <body>
     <h1>MessageBoard</h1>

@@ -29,7 +29,7 @@ if(empty($errors)){
     }
     if(password_verify($_POST['passwd'], $res['pwd'])){
         session_regenerate_id();
-        $_SESSION['login'] = 1;
+        $_SESSION['login'] = true;
         $_SESSION['id'] = $res['id'];
         $_SESSION['last_login'] = time();
     }
