@@ -32,6 +32,7 @@ if(empty($errors)){
         $_SESSION['login'] = true;
         $_SESSION['id'] = $res['id'];
         $_SESSION['last_login'] = time();
+        header('Location: indexadmin.php');
     }
 }
 ?>

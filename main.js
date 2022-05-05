@@ -1,4 +1,10 @@
 // Get messages
+let admin = false
+console.log(window.location.href)
+if (window.location.href.indexOf('indexadmin')){
+    admin = true;
+}
+
 window.addEventListener('load', getMessages)
 document.getElementById("namesBtn").addEventListener('click', printNames)
 document.getElementById("messagesBtn").addEventListener('click', printMessages)
@@ -39,9 +45,16 @@ function printMessages() {
         msgTextDivText = document.createTextNode(viesti.messag)
         msgTextDiv.appendChild(msgTextDivText)
 
-
         div.appendChild(p)
         div.appendChild(msgTextDiv)
+
+        if (typeof admin !== 'undefined' && admin == true) {
+            const deleteBtn = document.createElement("button")
+            deleteBtnText = document.createTextNode("Delete")
+            deleteBtn.appendChild(deleteBtnText);
+            div.appendChild(deleteBtn)
+        }
+        
 
         messageDiv.appendChild(div)
     })
