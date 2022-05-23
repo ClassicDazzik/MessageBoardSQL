@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'connect.php';
+include 'conn/connect.php';
 
 // Check if fields are empty and make an error message
 if(isset($_POST) & !empty($_POST)){
@@ -32,7 +32,7 @@ if(empty($errors)){
         $_SESSION['login'] = true;
         $_SESSION['id'] = $res['id'];
         $_SESSION['last_login'] = time();
-        header('Location: indexadmin.php');
+        header('Location: admin/index.php');
     }
 }
 ?>

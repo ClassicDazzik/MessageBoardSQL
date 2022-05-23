@@ -1,5 +1,5 @@
 <?php
-include 'connect.php';
+include 'conn/connect.php';
 
 $stmt = $conn->prepare("INSERT INTO msg (sender, messag, thedate)
 VALUES (:sender, :messag, :thedate)");

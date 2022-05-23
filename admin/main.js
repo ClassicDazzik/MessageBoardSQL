@@ -1,3 +1,10 @@
+// Get messages
+let admin = false
+console.log(window.location.href)
+if (window.location.href.indexOf('./index.php')){
+    admin = true;
+}
+
 window.addEventListener('load', getMessages)
 document.getElementById("namesBtn").addEventListener('click', printNames)
 document.getElementById("messagesBtn").addEventListener('click', printMessages)
@@ -18,7 +25,7 @@ function getMessages() {
         //     msgDiv.appendChild(newMessage)
         // })
     }
-    ajax.open("GET", "conn/getAllMessages.php")
+    ajax.open("GET", "")
     ajax.send()
 }
 
@@ -40,6 +47,15 @@ function printMessages() {
 
         div.appendChild(p)
         div.appendChild(msgTextDiv)
+
+        if (typeof admin !== 'undefined' && admin == true) {
+            const deleteBtn = document.createElement("button")
+            deleteBtnText = document.createTextNode("Delete")
+            deleteBtn.appendChild(deleteBtnText);
+            div.appendChild(deleteBtn)
+        }
+        
+
         messageDiv.appendChild(div)
     })
 }

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'connect.php';
+include 'conn/connect.php';
 
 if(isset($_POST['registerBtn'])){
     $usernam = !empty($_POST['usernam']) ? trim($_POST['usernam']) : null;
