@@ -18,15 +18,11 @@ if(!isset($_SESSION['login'])) {
     <h1>MessageBoard Admin</h1>
     <button id="namesBtn">Show Names</button>
     <button id="messagesBtn">Show Messages</button>
-    <div id="messageDiv"></div>
-    <!--div class="sender">
-        <p>Sent by <b>Masa</b> at <b>2022-5-4</b></p>
-        <div class="message">Juu moi tää on testiviesti jutska</div>
-    </div>
-    <div class="sender">
-        <p></p>
-        <div class="message"></div-->
-    </div>
+    <form>
+        <div id="messageDiv"></div>
+    
+        </div>
+    </form>
     <script src="./main.js"></script>
 </body>
 </html>

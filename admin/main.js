@@ -25,7 +25,7 @@ function getMessages() {
         //     msgDiv.appendChild(newMessage)
         // })
     }
-    ajax.open("GET", "")
+    ajax.open("GET", "../conn/getAllMessages.php")
     ajax.send()
 }
 
