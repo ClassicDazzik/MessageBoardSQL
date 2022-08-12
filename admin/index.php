@@ -18,11 +18,7 @@ if(!isset($_SESSION['login'])) {
     <h1>MessageBoard Admin</h1>
     <button id="namesBtn">Show Names</button>
     <button id="messagesBtn">Show Messages</button>
-    <form>
         <div id="messageDiv"></div>
-    
-        </div>
-    </form>
     <script src="./main.js"></script>
 </body>
 </html>
