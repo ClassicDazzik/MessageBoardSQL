@@ -8,6 +8,7 @@ if (window.location.href.indexOf('./index.php')){
 window.addEventListener('load', getMessages)
 document.getElementById("namesBtn").addEventListener('click', printNames)
 document.getElementById("messagesBtn").addEventListener('click', printMessages)
+document.getElementById("messageDiv").addEventListener('click', checkMessageClick)
 
 let data = null
 
@@ -50,6 +51,7 @@ function printMessages() {
 
         if (typeof admin !== 'undefined' && admin == true) {
             const deleteBtn = document.createElement("button")
+            deleteBtn.setAttribute("id", viesti.id)
             deleteBtnText = document.createTextNode("Delete")
             deleteBtn.appendChild(deleteBtnText);
             div.appendChild(deleteBtn)
@@ -71,4 +73,8 @@ function printNames() {
         newMessage.appendChild(messageText)
         msgDiv.appendChild(newMessage)
     })
+}
+
+function checkMessageClick(event){
+    
 }
