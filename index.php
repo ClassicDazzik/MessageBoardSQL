@@ -15,7 +15,7 @@ include 'conn/connect.php';
         echo "<a role=button href='login.php'>Login</a>";
     } else {
         echo "<a role=button href='logout.php'>Logout</a>";
-        echo "<a role=button href='admin/index.php'>Admin</a>";
+        echo "<a role=button href='admin/index.php'> Admin</a>";
     }
     ?>
     <a role=button href='register.php'>Register</a>
