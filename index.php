@@ -15,22 +15,16 @@ include 'conn/connect.php';
         echo "<a role=button href='login.php'>Login</a>";
     } else {
         echo "<a role=button href='logout.php'>Logout</a>";
+        echo "<a role=button href='admin/index.php'>Admin</a>";
     }
     ?>
+    <a role=button href='register.php'>Register</a>
 </head>
 <body>
     <h1>MessageBoard</h1>
     <button id="namesBtn">Show Names</button>
     <button id="messagesBtn">Show Messages</button>
-    <div id="messageDiv"></div>
-    <!--div class="sender">
-        <p>Sent by <b>Masa</b> at <b>2022-5-4</b></p>
-        <div class="message">Juu moi tää on testiviesti jutska</div>
-    </div>
-    <div class="sender">
-        <p></p>
-        <div class="message"></div-->
-    </div>
+        <div id="messageDiv"></div>
     <script src="main.js"></script>
 </body>
 </html>

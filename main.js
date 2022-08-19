@@ -7,16 +7,8 @@ let data = null
 function getMessages() {
     const ajax = new XMLHttpRequest()
     ajax.onload = function () {
-        data = JSON.parse(this.responseText)
+        data = JSON.parse(this.responseText).filter(viesti => viesti.hidden === "0")
         console.log(data)
-        // const msgDiv = document.getElementById("messageDiv")
-        // data.forEach(message => {
-
-        //     const newMessage = document.createElement("p")
-        //     const messageText = document.createTextNode(message.messag)
-        //     newMessage.appendChild(messageText)
-        //     msgDiv.appendChild(newMessage)
-        // })
     }
     ajax.open("GET", "conn/getAllMessages.php")
     ajax.send()
@@ -45,7 +37,6 @@ function printMessages() {
 }
 
 function printNames() {
-
     const msgDiv = document.getElementById("messageDiv")
     msgDiv.innerHTML = ""
     data.forEach(message => {

@@ -1,9 +1,13 @@
 <?php
+session_start();
 include 'connect.php';
 
 try {
-    $sql = "SELECT id, sender, messag, thedate FROM msg;";
-
+    if(isset($_SESSION['login'])) {
+        $sql = "SELECT id, sender, messag, thedate, `hidden` FROM msg;";
+    } else {
+        $sql = "SELECT id, sender, messag, thedate, `hidden` FROM msg WHERE `hidden` = '0';";
+    }
     $stmt = $conn->prepare($sql);
 
     if ($stmt->execute() == false) {
