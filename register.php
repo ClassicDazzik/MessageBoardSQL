@@ -1,58 +1,36 @@
-<?php
-session_start();
-include 'conn/connect.php';
+<?php session_start(); ?>
+<?php include_once 'layout/top.php'; ?>
+<?php include_once 'layout/nav.php'; ?>
 
-if(isset($_POST['registerBtn'])){
-    $usernam = !empty($_POST['usernam']) ? trim($_POST['usernam']) : null;
-    $pass = !empty($_POST['pwd']) ? trim($_POST['pwd']) : null;
-    $passConfirm = !empty($_POST['pwd2']) ? trim($_POST['pwd2']) : null;
+<div class="container">
 
-    if($pass == $passConfirm){
+<div id="notifBox" class="alert alert-dismissible alert-warning d-none">
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  <h4 class="alert-heading">Message Box!</h4>
+  <p class="mb-0"></a></p>
+</div>
 
-        $sql = "SELECT COUNT(accname) AS num FROM accounts WHERE accname = :accname";
-        $stmt = $conn->prepare($sql);
+<form name="register">
+  <fieldset>
+    <legend>Register</legend>
+    <div class="form-group">
+      <label for="username" class="col-sm-2 col-form-label">Username</label>
+      <input name="username" type="text" class="form-control" placeholder="username">
+    </div>
+    <div class="form-group">
+      <label for="password" class="form-label mt-4">Password</label>
+      <input name="password" type="password" class="form-control" id="password" placeholder="password">
+    </div>
+    <div class="form-group">
+      <label for="password2" class="form-label mt-4">Password</label>
+      <input name="password2" type="password" class="form-control" id="password2" placeholder="confirm password">
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+  </fieldset>
+</form>
+</div>
 
-        $stmt->bindValue(':accname', $usernam);
-        $stmt->execute();
+<script src="js/script.js"></script>
+<script src="server/reg.js"></script>
+<?php include_once 'layout/bottom.php'; ?>
 
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            if($row['num'] > 0){
-                die('Username already exists.');
-            }
-
-        $passwordHash = password_hash($pass, PASSWORD_BCRYPT);
-
-        $sql = "INSERT INTO accounts (accname, pwd) VALUES (:accname, :pwd)";
-        $stmt = $conn->prepare($sql);
-
-        $stmt->bindValue(':accname', $usernam);
-        $stmt->bindValue(':pwd', $passwordHash);
-
-        $result = $stmt->execute();
-    } else {
-        echo "Passwords dont match";
-    }
-}
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-</head>
-<h1>Create an Admin account</h1>
-<body>
-    <form action="register.php" method="post">
-        <label for="usernam">Username</label>
-        <input type="text" name="usernam" id="usernam" required>
-        <label for="pwd">Password</label>
-        <input type="password" name="pwd" id="pwd">
-        <label for="pwd2">Repeat Password</label>
-        <input type="password" name="pwd2" id="pwd2">
-        <input type="submit" value="Register" name="registerBtn">
-    </form>
-</body> 
-</html>

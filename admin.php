@@ -1,9 +1,15 @@
 <?php session_start(); ?>
+<?php
+if (!isset($_SESSION['logged_in'])){
+  header('Location: index.php');
+  die();
+}
+?>
 <?php include_once 'layout/top.php'; ?>
 <?php include_once 'layout/nav.php'; ?>
 
 <div class="jumbotron">
-    <h1 class="display-3">Voteapp</h1>
+    <h1 class="display-3">Voteapp (admin)</h1>
     <?php if(isset($_SESSION['logged_in'])):?>
         <p>Welcome <?php echo $_SESSION['username']; ?></p>
     <?php endif; ?>
@@ -24,7 +30,7 @@
   </ul>
 </div>
 
-<script src="server/index.js"></script>
+<script src="server/admin.js"></script>
 <script src="js/script.js"></script>
 
 <?php include_once 'layout/bottom.php'; ?>

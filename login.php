@@ -1,55 +1,30 @@
-<?php
-session_start();
-include 'conn/connect.php';
+<?php session_start(); ?>
+<?php include_once 'layout/top.php'; ?>
+<?php include_once 'layout/nav.php'; ?>
 
-// Check if fields are empty and make an error message
-if(isset($_POST) & !empty($_POST)){
-    if(empty($_POST['user'])){$errors[]="Username is empty"; }
-    if(empty($_POST['passwd'])){$errors[]="Password is empty";}
+<div id="notifBox" class="alert alert-dismissible alert-success d-none">
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  <h4 class="alert-heading">Message Box!</h4>
+  <p class="mb-0"></a></p>
+</div>
 
-
-// Check if Username exists in database
-if(empty($errors)){
-    $sql = ("SELECT * FROM accounts WHERE accname=?");
-    $result = $conn->prepare($sql);
-    $result->execute(array($_POST['user']));
-    $count = $result->rowCount();
-    $res = $result->fetch(PDO::FETCH_ASSOC);
-    if($count == 1){
-        }else{
-            $errors[] = "That username does not exist";
-        }
-    }
-// Verify the password
-    if($count == 1){
-        if(password_verify($_POST['passwd'], $res['pwd'])){
-        }else{
-            $errors[] = "Username and Password don't match";
-        }
-    }
-    if(password_verify($_POST['passwd'], $res['pwd'])){
-        session_regenerate_id();
-        $_SESSION['login'] = true;
-        $_SESSION['id'] = $res['id'];
-        $_SESSION['last_login'] = time();
-        header('Location: admin/index.php');
-    }
-}
-?>
-
-<form role="form" method="post">
-    <label for="user">Username</label><br>
-    <input type="text" id="user" name="user"><br>
-    <label for="passwd">Password</label><br>
-    <input type="password" id="passwd" name="passwd"><br>
-    <br><input type="submit" value="Login" name="login">
+<div class="container">
+<form name="login">
+  <fieldset>
+    <legend>Login</legend>
+    <div class="form-group">
+      <label for="username" class="col-sm-2 col-form-label">Username</label>
+      <input name="username" type="text" class="form-control" placeholder="username">
+    </div>
+    <div class="form-group">
+      <label for="password" class="form-label mt-4">Password</label>
+      <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="password">
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+  </fieldset>
 </form>
-<?php
-    // If there is an error,  print it.
-    if(!empty($errors)){
-        foreach ($errors as $error) {
-            echo "<p>" . $error . "</p>";
-    }
-}
-?>
+
+<script src="js/script.js"></script>
+<script src="server/login.js"></script>
+<?php include_once 'layout/bottom.php'; ?>
 
