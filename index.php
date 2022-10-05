@@ -15,8 +15,11 @@ include 'conn/connect.php';
         echo "<a role=button href='login.php'>Login</a>";
     } else {
         echo "<a role=button href='logout.php'>Logout</a>";
+        echo "<a role=button href='admin/index.php'> Admin</a>";
     }
     ?>
+    <a role=button href='register.php'>Register</a>
+    <a role=button href='add.html'>Add Message</a>
 </head>
 <body>
     <h1>MessageBoard</h1>

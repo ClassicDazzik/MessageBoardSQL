@@ -7,6 +7,8 @@ if(!isset($_SESSION['login'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+<a role=button href='../index.php'>Index</a>
+<a role=button href='../add.html'>Add Message</a>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
